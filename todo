@@ -1,0 +1,22 @@
+[x] mockup
+[x] routes
+[-] slightly fancier mockup
+    [x] hovers, slide animation
+    [] grow image
+[] link to db
+    [] gen token
+    [] auto-check if login
+    [] ping api for confirm logged in
+[] make api
+    [] gen token
+    [] fetch token info
+    [] confirm token is true
+    [] send structured data
+[] parse structured data
+[] rename album
+[] rename image
+[] create album
+[] create image
+[] fancy finalised thing
+    [] animate title motion
+    [] share functionality
