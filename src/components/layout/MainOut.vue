@@ -73,13 +73,14 @@ import AddThumb from "./../atoms/AddThumb.vue"
     }
     main {
         position: absolute;
+        overflow-x: visible;
         min-width: 70%;
-        width: fit-content;
         height: 100%;
         max-height: 100%;
         left: 30%;
         display: grid;
         grid-template-rows: repeat(auto-fit, minmax(170px, 1fr));
+        grid-auto-columns: 170px;
         grid-auto-flow: column;
         transition: 0.3s left linear;
         & > * {

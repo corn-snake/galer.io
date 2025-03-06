@@ -18,7 +18,7 @@ export default defineConfig({
       disabled: false,
       config: true,
     },
-    includeAssets: ["ADDHEREFAVICON", "ADDHEREFONTS"],
+    includeAssets: ["bg512_512.png", "bg559_192x192.png"],
     manifest: file,
     workbox: {
       sourcemap: true,

@@ -4,8 +4,13 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --text-colour: rgba(255, 255, 255, 0.87);
+  color: var(--text-colour);
+  --bg-colour: #242424;
+  background-color: var(--bg-colour);
+
+  --off-background: color-mix(in srgb, var(--bg-colour) 77%, var(--text-colour) 23%);
+  --off-text: color-mix(in srgb, var(--text-colour) 77%, var(--bg-colour) 23%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -65,7 +70,8 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    --text-colour: #213547;
+    color: var(--text-colour);
     background-color: #ffffff;
   }
   a:hover {

@@ -22,7 +22,8 @@
         padding: 1.5em;
         transition: translate 0.45s ease-out;
         z-index: 2;
-        background-color: #fff;
+        background-color: var(--off-background);
+        color: var(--off-text);
         button {
             position: absolute;
             bottom: 0;
@@ -31,14 +32,11 @@
             margin: auto;
             box-sizing: border-box;
             max-height: 3em;
-            background-color: #fff;
+            background-color:var(--off-background);
+            color: var(--off-text);
         }
         &.hide {
             translate: -100%;
-            transition: translate 0.45s ease-in;
-            button {
-                background-color: #f9f9f9;
-            }
         }
     }
 </style>
