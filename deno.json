@@ -1,7 +1,7 @@
 {
     "tasks": {
         "old_dev": "vite",
-        "dev": "deno run -A jsr:@sys/driver-vite/dev --in=./index.html",
+        "dev": "deno run -A jsr:@sys/driver-vite/main --cmd=dev --in=./index.html",
         "build": "vite build",
         "preview": "vite preview"
     },

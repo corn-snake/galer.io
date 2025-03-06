@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig } from 'npm:vite'
+import vue from 'npm:@vitejs/plugin-vue'
+import { VitePWA } from 'npm:vite-plugin-pwa';
+import file from "./manifest.json" with { type: "json" };
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -18,26 +19,7 @@ export default defineConfig({
       config: true,
     },
     includeAssets: ["ADDHEREFAVICON", "ADDHEREFONTS"],
-    manifest: {
-      "short_name": "Galerio",
-      "name": "Galer.io",
-      "icons": [
-        {
-          "src": "/ADDHERE",
-          "sizes": "192x192",
-          "type": "image/png"
-        },
-        {
-          "src": "/ADDHERE",
-          "sizes": "512x512",
-          "type": "image/png"
-        }
-      ],
-      "start_url": ".",
-      "display": "standalone",
-      "theme_color": "#000000",
-      "background_color": "#ffffff"
-    },
+    manifest: file,
     workbox: {
       sourcemap: true,
       globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
