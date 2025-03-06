@@ -1,9 +1,10 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import PWABadge from './components/mols/PWABadge.vue';
 </script>
 
 <template>
   <router-view></router-view>
+  <PWABadge/>
 </template>
 
 <style scoped>
