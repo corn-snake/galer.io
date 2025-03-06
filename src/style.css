@@ -52,7 +52,7 @@ button, .behave-button {
     border-color: #646cff;
   }
   &:focus,
-  button:focus-visible {
+  &:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
 }
