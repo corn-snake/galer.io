@@ -7,7 +7,7 @@
 <template>
     <div :class="['sidebar', isHiding]">
         <slot></slot>
-        <button @click="e=>sliding = !sliding">⦀</button>
+        <div class="button behave-button" @click="e=>sliding = !sliding">⦀</div>
     </div>
 </template>
 
@@ -21,10 +21,11 @@
         top: 0;
         padding: 1.5em;
         transition: translate 0.45s ease-out;
+        -webkit-transition: -webkit-transform 0.45s ease-out;
         z-index: 2;
         background-color: var(--off-background);
         color: var(--off-text);
-        button {
+        .button {
             position: absolute;
             bottom: 0;
             right: -2em;
@@ -36,7 +37,14 @@
             color: var(--off-text);
         }
         &.hide {
-            translate: -100%;
+            transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
+        }
+    }
+    @media (max-width: 500px) {
+        .sidebar {
+            width: 70vw;
+            max-width: 70dvw;
         }
     }
 </style>
