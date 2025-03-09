@@ -3,6 +3,7 @@
 [-] slightly fancier mockup
     [x] hovers, slide animation
     [] grow image
+[] fix webkit image out-of-bounds
 [] link to db
     [] gen token
     [] auto-check if login

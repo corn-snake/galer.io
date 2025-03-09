@@ -4,20 +4,23 @@
     import { pageName } from '../../stores/page';
     import { useRoute } from 'vue-router';
 
-import AddThumb from "./../atoms/AddThumb.vue"
-    const isUnder =  computed(()=>sliding.value ? "under" : '')
+    import AddThumb from "./../atoms/AddThumb.vue"
+    import router from '../../router';
+
+    const isUnder =  computed(()=>sliding.value ? "under" : undefined)
     const p = defineProps(["single", "previous", "al"]),
         r = useRoute();
-    const isAlbum =  computed(()=>r.params.alb ? "album" : '')
+    const isAlbum =  computed(()=>r.params.alb ? "album" : undefined)
+    const fR = () => r.params.alb ? router.push("/") : '';
 </script>
 
 <template>
     <section :class="['maine', isUnder, isAlbum]">
-        <header>
+        <header @click="fR">
             <h1>{{ pageName }}</h1>
-            <AddThumb />
         </header>
         <main>
+            <AddThumb :album="isAlbum" />
             <slot></slot>
         </main>
     </section>
@@ -63,8 +66,8 @@ import AddThumb from "./../atoms/AddThumb.vue"
     }
     .album header {
         top: 0;
-        height: 30vh;
-        width: 100vw;
+        height: 30dvh;
+        width: 100dvw;
         max-width: 100%;
         h1 {
             font-size: 2rem;
@@ -96,17 +99,16 @@ import AddThumb from "./../atoms/AddThumb.vue"
         top: 30%;
         height: 70%;
         padding-left: 10vw;
-        grid-template-rows: repeat(auto-fit, minmax(130px, 1fr));
     }
     @media (max-height: 339px) {
         main {
             column-gap: 70px;
             padding-left: 70px;
         }
-    }
-    @media (max-height: 370px) {
-        .album main {
-            column-gap: 70px;
+        @media (max-height: 800px) {
+            main {
+                column-gap: 10px;
+            }
         }
     }
     header::after, main::after {
@@ -123,5 +125,43 @@ import AddThumb from "./../atoms/AddThumb.vue"
     .under header::after, .under main::after {
         opacity: 10%;
         transition: opacity 0.45s ease-out;
+    }
+
+    @media (max-width: 500px) {
+        .maine {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            max-width: 100dvw;
+        }
+        header {
+            position: relative;
+            max-height: 25%;
+            width: calc(100% - 2.6rem);
+            max-width: calc(100dvw - 2.6rem);
+            h1 {
+                font-size: 2rem !important;
+            }
+        }
+        main {
+            position: relative;
+            min-height: 75%;
+            width: 100%;
+            max-width: 100%;
+            max-height: fit-content;
+            left: 0;
+            grid-template-rows: max-content;
+            grid-auto-flow: row;
+            grid-auto-columns: 100dvw;
+            row-gap: 15vw;
+            padding: 0;
+        }
+        .album main {
+            top: 0;
+            padding: 0;
+            height: fit-content;
+        }
+        header::after, main::after {
+            width: 100dvw;
+        }
     }
 </style>

@@ -1,0 +1,25 @@
+article {
+    height: 120px;
+    width: 120px;
+    max-height: 120px;
+    max-width: 120px;
+    background-color: #c0c0c0;
+}
+
+a,
+.thumb,
+img {
+    height: 120px;
+    width: 120px;
+}
+
+@media (max-width: 500px) {
+    .thumb,
+    a,
+    img {
+        max-height: 60vw;
+        max-width: 60vw;
+        height: 60vh;
+        width: 60vw;
+    }
+}

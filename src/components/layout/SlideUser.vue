@@ -43,8 +43,8 @@
     }
     @media (max-width: 500px) {
         .sidebar {
-            width: 70vw;
-            max-width: 70dvw;
+            width: 70dvw;
+            max-width: 70ddvw;
         }
     }
 </style>

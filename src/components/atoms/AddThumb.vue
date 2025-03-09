@@ -3,9 +3,11 @@
 </script>
 
 <template>
-    <article>
+    <article class="thumb">
         <h3>+</h3>
-        <span class="caption">Add a{{ props.album ? "n Album" : " Photo" }}</span>
+        <span class="caption">
+            <h4>Add a{{ props.album === undefined ? "n Album" : " Photo" }}</h4>
+        </span>
     </article>
 </template>
 
@@ -38,7 +40,6 @@
         .caption {
             z-index: 3;
             width: 106px;
-            height: 1.2em;
             color: white;
             position: absolute;
             bottom: 7px;
@@ -59,5 +60,34 @@
             z-index: 8;
             height: 120px;
         }
+    }
+    @media (max-width: 500px) {
+        a, .thumb, article::after {
+            max-height: 60vw;
+                max-width: 60vw;
+                height: 60vh;
+                width: 60vw;
+        }
+    }
+</style>
+<style scoped>
+    h4 {
+        margin: auto;
+        margin-left: 1.5rem;
+    }
+    @media (max-width: 500px) {
+        h3,
+            h4 {
+                margin: 0;
+            }
+        
+            h3 {
+                font-size: 3.7rem;
+            }
+        
+            h4 {
+                font-size: 3rem;
+                margin-left: 2.5rem;
+            }
     }
 </style>
