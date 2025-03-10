@@ -1,3 +1,5 @@
+import 'package:flt/menu/loggedout.dart';
+import 'package:flt/menu/side.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,10 +11,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
+        drawer: SlideUser(loggedOutDrawer()),
         body: Center(
-          child: Text('Hello World!'),
+          child: DrawerButton(),
         ),
       ),
     );
