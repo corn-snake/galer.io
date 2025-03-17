@@ -6,6 +6,7 @@
         "preview": "vite preview"
     },
     "imports": {
+        "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.49.1",
         "vue": "npm:vue@^3.4.21",
         "vue-router": "npm:vue-router@^4.5.0",
         "@sys/driver-vite": "jsr:@sys/driver-vite@^0.0.130",

@@ -1,3 +1,41 @@
+import { users, logins, lands } from "./sb.js";
+import sha512 from "!common/sha512.js";
+import { initial } from "./linkFuncs.js";
+
+const login = async(uname, pwdHash, tknhash) => {
+    const uhash = await sha512(uname),
+        pw = await sha512(`${pwdHash}+${await uhash}`);
+    const u = await (await users().select().eq("uname", uname)),
+        d = await u.data[0];
+    if (u.error !== null || u.data.length ==0) return -1;
+    if (await pw == d.sfhash){
+        const li = await (await logins().upsert({tknhash, uid: d.id, expires: Date.now() + 183 * 24 * 60 * 60 * 1000}, {ignoreDuplicates: true})),
+            m = await initial(d.id);
+        return await m;
+    }
+    return 0;
+}
+
+const register = async (uname, pwdHash, tknhash) => {
+    const uhash = await sha512(uname),
+        sfhash = await sha512(`${pwdHash}+${await uhash}`);
+    const u = await (await users().insert({uhash, sfhash, uname}).select()).data[0],
+        login = await (await logins().upsert({ tknhash, uid: (await u).id, expires: Date.now() + 183 * 24 * 60 * 60 * 1000 }, {ignoreDuplicates:true})),
+        firstLand = await (await lands().upsert({user: (await u).id, id: (await u).id}, {ignoreDuplicates: true}));
+    if((await u).error != null) return false;
+    return await initial((await u).id); 
+};
+
+const logout = async (tknhash) =>{
+    const dq = await logins().delete().eq("tknhash", tknhash);
+    if ((await dq).error !== null) return false;
+    return true;
+};
+
+export {login, register, logout}
+ 
+//-------------------------
+
 async function validateUser(b) {
     if ((await b)[1].trim().length !== 128 || (await b)[0].match(/\*/)) return false;
     const authquery = await sb.schema("udata").from("users").select("uid,logins(tknhash,expires)").eq('uname', (await b)[0].trim());
@@ -16,7 +54,7 @@ async function validateUser(b) {
     return ad;
 }
 
-async function validatLandStanding(b, t, u, c) {
+async function validateLandStanding(b, t, u, c) {
     let type = ["owner", "editor", "viewer"];
     const authquery = await sb.schema("landata").from("externalAccesss").select(`${type[c] ?? "viewer"}`).eq("user", linkUser).eq("link", linkLink);
     if ((await authquery).data == null

@@ -1,0 +1,6 @@
+{
+    "username": "UsuarioEjemplo",
+    "cards": 15,
+    "landEach": ["deep", "deep", "deep"],
+    "subMultiplier": 2
+}
